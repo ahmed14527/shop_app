@@ -72,7 +72,7 @@ class Product(models.Model):
     """
     The Product table contining all product items.
     """
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
 
     product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
