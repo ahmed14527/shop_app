@@ -27,7 +27,7 @@ class Product(models.Model):
     
 class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    # Add other fields as needed
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Favorite(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
