@@ -111,7 +111,7 @@ class Product(models.Model):
         return reverse("store:product_detail", args=[self.slug])
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class ProductSpecificationValue(models.Model):
