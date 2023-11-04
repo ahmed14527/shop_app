@@ -1,27 +1,29 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import (CategoryViewSet, ProductTypeViewSet,
-                    ProductViewSet, ProductSpecificationViewSet,
-                    ProductSpecificationValueViewSet, ProductImageViewSet,
-                    CategoryListAPIView,ProductTypeListAPIView,
-                    ProductListAPIView,ProductSpecificationListAPIView,
-                    ProductSpecificationValueListAPIView,ProductImageListAPIView)
+from .views import (CategoryViewSet, 
+                    ProductViewSet,
+                    favoriteListAPIView,
+                    favoriteViewSet,
+                    ProductListAPIView,
+                   OrderListAPIView,
+                   OrderViewSet,
+                    CategoryListAPIView
+                    )
 
 router = routers.DefaultRouter()
 router.register(r'categories', CategoryViewSet)
-router.register(r'product-types', ProductTypeViewSet)
 router.register(r'products', ProductViewSet)
-router.register(r'product-specifications', ProductSpecificationViewSet)
-router.register(r'product-specification-values', ProductSpecificationValueViewSet)
-router.register(r'product-images', ProductImageViewSet)
+router.register(r'orders', OrderViewSet)
+router.register(r'favorites', favoriteViewSet)
+
+
 
 urlpatterns = [
     path('categories/list/',CategoryListAPIView.as_view(), name='category-list'),
-    path('product-types/list/',ProductTypeListAPIView.as_view(), name='product-type-list'),
-    path('products/list/', ProductListAPIView.as_view(), name='product-list'),
-    path('product-specifications/list/', ProductSpecificationListAPIView.as_view(), name='product-specification-list'),
-    path('product-specification-values/list/', ProductSpecificationValueListAPIView.as_view(), name='product-specification-value-list'),
-    path('product-images/list/', ProductImageListAPIView.as_view(), name='product-image-list'),
+    path('products/list/',ProductListAPIView.as_view(), name='product-list'),
+    path('orders/list/',OrderListAPIView.as_view(), name='order-list'),
+    path('favorites/list/',favoriteListAPIView.as_view(), name='favorite-list'),
+
     path('', include(router.urls)),
 
 ]
