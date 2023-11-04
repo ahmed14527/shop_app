@@ -1,24 +1,15 @@
 from django.urls import path, include
-from rest_framework import routers
-from .views import (
-    CategoryViewSet,
-    ProductTypeViewSet,
-    ProductSpecificationViewSet,
-    ProductViewSet,
-    ProductSpecificationValueViewSet,
-    ProductImageViewSet,
-)
+from rest_framework.routers import DefaultRouter
+from .views import CategoryViewSet, ProductTypeViewSet, ProductViewSet, ProductSpecificationViewSet, ProductSpecificationValueViewSet, ProductImageViewSet
 
-router = routers.DefaultRouter()
+router = DefaultRouter()
 router.register(r'categories', CategoryViewSet)
 router.register(r'product-types', ProductTypeViewSet)
-router.register(r'product-specifications', ProductSpecificationViewSet)
 router.register(r'products', ProductViewSet)
+router.register(r'product-specifications', ProductSpecificationViewSet)
 router.register(r'product-specification-values', ProductSpecificationValueViewSet)
 router.register(r'product-images', ProductImageViewSet)
 
-app_name = 'products'
-
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]

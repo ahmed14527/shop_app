@@ -16,8 +16,6 @@ class Category(MPTTModel):
         max_length=255,
         unique=True,
     )
-    slug = models.SlugField(verbose_name=_("Category safe URL"), max_length=255, unique=True)
-    parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
     is_active = models.BooleanField(default=True)
 
     class MPTTMeta:
@@ -27,8 +25,7 @@ class Category(MPTTModel):
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
 
-    def get_absolute_url(self):
-        return reverse("store:category_list", args=[self.slug])
+    
 
     def __str__(self):
         return self.name
@@ -58,7 +55,7 @@ class ProductSpecification(models.Model):
     """
 
     product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
-    name = models.CharField(verbose_name=_("Name"), help_text=_("Required"), max_length=255)
+    Specification = models.CharField(verbose_name=_("Name"), help_text=_("Required"), max_length=255)
 
     class Meta:
         verbose_name = _("Product Specification")
@@ -107,12 +104,8 @@ class Product(models.Model):
     )
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
-    users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
 
-    class Meta:
-        ordering = ("-created_at",)
-        verbose_name = _("Product")
-        verbose_name_plural = _("Products")
+    
 
     def get_absolute_url(self):
         return reverse("store:product_detail", args=[self.slug])
