@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'products',
-    
+    'drf_yasg',
     'rest_framework',
     'knox',
 ]
