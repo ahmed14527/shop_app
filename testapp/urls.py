@@ -22,6 +22,9 @@ from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+from rest_framework.documentation import include_docs_urls
+
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +34,13 @@ urlpatterns = [
     path(
         'api/docs/',
         SpectacularSwaggerView.as_view(url_name='api-schema'),
-        name='api-docs',)
+        name='api-docs',),
+    path('docs/', include_docs_urls(title='BlogAPI')),
+    path('schema', get_schema_view(
+        title="BlogAPI",
+        description="API for the BlogAPI",
+        version="1.0.0"
+    ), name='openapi-schema'),
     
 
 ]
