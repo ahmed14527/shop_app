@@ -40,27 +40,11 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'rest_framework',
-    'drf_spectacular',
     'knox',
     'drf_yasg',
 
 ]
-SWAGGER_SETTINGS = {
-    'USE_SESSION_AUTH': False,  # Set to True if you're using session authentication.
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'basic',
-        }
-    },
-    'api_version': '1.0',
-    'info': {
-        'title': 'Your API',
-        'description': 'API for your project',
-        'terms_of_service': 'https://your-terms-of-service-url.com/',
-        'contact': 'your-email@example.com',
-        'license': 'MIT License',
-    },
-}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

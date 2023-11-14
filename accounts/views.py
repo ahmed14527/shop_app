@@ -86,29 +86,3 @@ class LogoutView(APIView):
         return Response({"details": "Successfully logged out"}, status=status.HTTP_200_OK)
 
 
-class UserListView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = RegisterSerializer
-
-    @swagger_auto_schema(
-        operation_description="Get all users API",
-        responses={
-            200: openapi.Response(
-                description="OK",
-                schema=openapi.Schema(
-                    type=openapi.TYPE_ARRAY,
-                    items=openapi.Schema(
-                        type=openapi.TYPE_OBJECT,
-                        properties={
-                            'id': openapi.Schema(type=openapi.TYPE_INTEGER),
-                            'username': openapi.Schema(type=openapi.TYPE_STRING),
-                            # Add more properties as needed
-                        },
-                    ),
-                ),
-            ),
-            400: 'Bad Request',
-        },
-    )
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
